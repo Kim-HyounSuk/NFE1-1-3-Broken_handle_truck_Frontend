@@ -4,7 +4,6 @@ import useFadeNavigate from "../hooks/useFadeNavigate.ts";
 import { categoryImages } from "../assets/images/category";
 import { categories } from "../constants/categories.ts";
 import { postBookmark, getBookmark } from "../apis/bookmark.ts";
-import { useToggle } from "../hooks/useToggle.ts";
 import { toast } from "react-toastify";
 
 interface CardProps {
@@ -14,6 +13,7 @@ interface CardProps {
     name: string;
     visited?: number;
     comments?: number;
+    isOpen: boolean;
   };
   bg: string;
 
@@ -43,7 +43,6 @@ export default function Card({
 
   const [bookmark, setBookmark] = useState<BookmarkItem[]>([]);
   const [isBookmarked, setIsBookMarked] = useState<boolean>(false);
-  const { isOn } = useToggle();
 
   // get 모든 북마크 데이터 저장
   useEffect(() => {
@@ -61,7 +60,7 @@ export default function Card({
     const checkIfBookmarked = () => {
       if (bookmark) {
         const matched = bookmark.some(
-          (place) => place.storeId === info.storeId
+          (place) => place.storeId === info.storeId,
         );
 
         setIsBookMarked(matched);
@@ -123,7 +122,7 @@ export default function Card({
           <div className="flex justify-end text-xs gap-x-1 text-white items-center">
             <div
               className={`w-1 h-1 rounded-full ${
-                isOn ? "bg-success" : "bg-category"
+                info.isOpen ? "bg-success" : "bg-category"
               }`}
             ></div>
             <div
@@ -131,7 +130,7 @@ export default function Card({
                 bg === "white" ? "text-black" : "text-white"
               }`}
             >
-              {isOn ? "운영중" : "운영종료"}
+              {info.isOpen ? "운영중" : "운영종료"}
             </div>
           </div>
         </div>
