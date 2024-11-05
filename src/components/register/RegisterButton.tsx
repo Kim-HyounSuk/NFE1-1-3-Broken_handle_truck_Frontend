@@ -2,6 +2,7 @@ import { toast } from "react-toastify";
 import { postStore } from "../../apis/store";
 import useFadeNavigate from "../../hooks/useFadeNavigate";
 import useMyStore from "../../hooks/useMyStore.ts";
+import useUserStore from "../../store/userStore.ts";
 
 interface RegisterButtonProps {
   // 식당(트럭_) 이름
@@ -28,6 +29,7 @@ export default function RegisterButton({
 }: RegisterButtonProps) {
   const navigate = useFadeNavigate();
   const { refetch } = useMyStore();
+  const { setRole } = useUserStore();
 
   const submitHandler = async () => {
     // 값이 비어 있는지 검사
@@ -56,6 +58,7 @@ export default function RegisterButton({
 
     if (res.msg === "ok") {
       refetch().then(() => {
+        setRole("owner");
         navigate(`/my-truck`, { replace: true });
         toast.success("저장되었습니다.");
       });

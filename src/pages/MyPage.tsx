@@ -21,7 +21,11 @@ export default function MyPage() {
   const navigate = useFadeNavigate();
   const nicknameRef = useRef<HTMLInputElement | null>(null);
   const setTitle = useTitleStore((state) => state.setTitle);
-  const { user: userInfo, setUser } = useUserStore();
+  const {
+    user: userInfo,
+    setUser,
+    setNickname: setUserNickname,
+  } = useUserStore();
   const { setCategory } = useStoresStore();
   const { closeSocket } = useNotificationStore();
   const { data, isLoading, refetch } = useComment<IMyComment>("me");
@@ -33,10 +37,10 @@ export default function MyPage() {
     const response = await logout();
 
     if (response.msg === "ok") {
-      setUser(null);
       closeSocket();
       setCategory("");
       toast.success("로그아웃이 완료되었습니다.");
+      setUser(null);
     }
   };
 
@@ -60,6 +64,7 @@ export default function MyPage() {
         return;
       }
       editNickname({ nickname }).then(() => {
+        setUserNickname(nickname);
         toast.success("변경이 완료되었습니다.");
         setIsEditMode(false);
       });
@@ -85,19 +90,26 @@ export default function MyPage() {
     <div className="px-8 sm:px-0 max-w-lg mx-auto h-full flex flex-col gap-8 sm:gap-12 pt-[50px] sm:pt-[60px]">
       <div className="flex justify-between items-center gap-4">
         <div className="flex justify-center">
-          <LogoIcon
-            width={80}
-            height={80}
-            className="border-1 rounded-full border-category p-2 fill-logo-violet"
-          />
+          {userInfo?.thumnail === "" ? (
+            <LogoIcon
+              width={80}
+              height={80}
+              className="border-1 rounded-full border-category p-2 fill-logo-violet"
+            />
+          ) : (
+            <img
+              src={userInfo?.thumnail}
+              className="rounded-full w-24 h-24 border-1 border-category"
+            />
+          )}
         </div>
         <div className="flex-1 flex items-center gap-1 relative">
           <div className="flex flex-col gap-y-1">
-            <div>
-              <span>{nickname}</span>
+            <div className="">
+              <span className="tracking-tighter text-lg pl-1">{nickname}</span>
               <input
                 ref={nicknameRef}
-                className="outline-none absolute left-0 bg-transparent w-full"
+                className="outline-none absolute left-0 bg-transparent w-full tracking-tighter text-lg pl-1"
                 type="text"
                 value={nickname}
                 onChange={({ target }) => setNickname(target.value)}
@@ -115,7 +127,7 @@ export default function MyPage() {
                 )}
               </button>
             </div>
-            <div className="text-sm text-category tracking-tighter">
+            <div className="text-base text-category tracking-tighter pl-1">
               {userInfo?.role === "owner"
                 ? "푸드트럭 사장님"
                 : "푸드트럭 발견가"}

@@ -2,15 +2,18 @@ import { toast } from "react-toastify";
 import { deleteStore } from "../apis/store.ts";
 import useFadeNavigate from "../hooks/useFadeNavigate.ts";
 import useMyStore from "../hooks/useMyStore.ts";
+import useUserStore from "../store/userStore.ts";
 
 export default function EditStore() {
   const navigate = useFadeNavigate();
   const { refetch } = useMyStore();
+  const { setRole } = useUserStore();
 
   const handleDeleteStore = () => {
     deleteStore().then((data) => {
       if (data.msg === "ok") {
         refetch().then(() => {
+          setRole("user");
           toast.success("정상적으로 삭제되었습니다.");
         });
       }
