@@ -29,8 +29,8 @@ const notificationStore: StateCreator<NotificationStore> = (set, get) => {
 		}
 
 		const apiURL = import.meta.env.VITE_API_URL as string;
-		const customURL = apiURL.replace(/^http(s)?:\/\//, '');
-		const wsURL = `wss://${customURL}?userId=${userId}`;
+		const customURL = apiURL.substring(5);
+		const wsURL = apiURL === 'product' ? `wss${customURL}?userId=${userId}` : `ws${customURL}?userId=${userId}`;
 
 		socket = new WebSocket(wsURL);
 		set({ isConnected: true, manualClose: false });
