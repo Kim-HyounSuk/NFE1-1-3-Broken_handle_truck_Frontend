@@ -1,10 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
 @font-face {
-  font-family: "Dovemayo_gothic";
-  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.1/Dovemayo_gothic.woff2")
-    format("woff2");
-  font-weight: normal;
-  font-style: normal;
+	font-family: 'Dovemayo_gothic';
+	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.1/Dovemayo_gothic.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
 }
 
 @tailwind base;
@@ -12,65 +11,73 @@
 @tailwind utilities;
 
 * {
-  font-family: "Noto Sans KR", sans-serif;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 body:has(.react-modal-sheet-container) {
-  overflow: hidden !important;
-  pointer-events: none;
+	overflow: hidden !important;
+	pointer-events: none;
 }
 body:has(.react-modal-sheet-container) .bottom-navbar {
-  position: fixed;
-  max-width: 768px !important;
-  width: 100%;
-  pointer-events: auto;
+	position: fixed;
+	max-width: 768px !important;
+	width: 100%;
+	pointer-events: auto;
 }
 
 /* 바텀시트 container를 담고있는 div의 z-index 변경 */
 #root ~ div:has(.react-modal-sheet-container) {
-  z-index: 999 !important;
+	z-index: 999 !important;
 }
 
 .react-modal-sheet-container {
-  /* custom styles */
-  position: relative !important;
-  margin: 0 auto !important;
-  max-width: 768px !important;
-  width: 100% !important;
-  background-color: transparent !important;
-  box-shadow: none !important;
+	/* custom styles */
+	position: relative !important;
+	margin: 0 auto !important;
+	max-width: 768px !important;
+	width: 100% !important;
+	background-color: transparent !important;
+	box-shadow: none !important;
 }
 
 .react-modal-sheet-header {
-  /* custom styles */
-  background-color: #323232;
-  border-top-left-radius: 2rem;
-  border-top-right-radius: 2rem;
+	/* custom styles */
+	background-color: #323232;
+	border-top-left-radius: 2rem;
+	border-top-right-radius: 2rem;
 }
 
 .react-modal-sheet-content {
-  /* custom styles */
-  background-color: #323232;
+	/* custom styles */
+	background-color: #323232;
 }
 
 .line-text {
-  position: relative;
+	position: relative;
 }
 .line-text::before,
 .line-text::after {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 50%;
-  translate: 0 -50%;
-  width: 100px;
-  height: 1px;
-  background-color: #ffffff;
-  opacity: 0.2;
+	content: '';
+	display: block;
+	position: absolute;
+	top: 50%;
+	translate: 0 -50%;
+	width: 100px;
+	height: 1px;
+	background-color: #ffffff;
+	opacity: 0.2;
 }
 .line-text::before {
-  right: calc(100% + 1rem);
+	right: calc(100% + 1rem);
 }
 .line-text::after {
-  left: calc(100% + 1rem);
+	left: calc(100% + 1rem);
+}
+
+.scrollbar-none {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+	display: none;
 }

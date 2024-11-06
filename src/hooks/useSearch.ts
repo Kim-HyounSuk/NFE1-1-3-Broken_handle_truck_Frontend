@@ -10,15 +10,12 @@ export const useSearch = () => {
   };
 
   const clickHandler = () => {
-    // 검색 아이콘 클릭시 input 데이터 값 확인용
-    console.log("검색 아이콘 클릭", searchTerm);
-    setKeyword(searchTerm);
+    setSearchTerm("");
+    setKeyword("");
   };
 
   const searchHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      // 엔터 키 입력 시 input 데이터 값 확인용
-      console.log("엔터 키 결과: ", searchTerm);
       setKeyword(searchTerm);
     }
   };

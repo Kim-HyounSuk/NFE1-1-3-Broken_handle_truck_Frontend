@@ -1,30 +1,38 @@
-import { BaseApiResponse } from './response';
+import { BaseApiResponse } from "./response";
 
 // GET	bookmark
 interface IBookmarkListItem {
-	name: string;
-	category: string;
-	isOpen: boolean;
-	comments: number;
+  _id: string;
+  storeId: string;
+  comments: number;
+  name: string;
+  isOpen: boolean;
+  category: string;
 }
 
 interface BookmarkListApiResponse extends BaseApiResponse {
-	bookmarks: IBookmarkListItem[];
+  bookmarks: IBookmarkListItem[];
 }
 
 // POST	bookmark
 interface IBookmark {
-	_id: string;
-	userId: string;
-	storeId: string;
+  _id: string;
+  userId: string;
+  storeId: string;
 }
 
 interface PostBookmarkApiParams {
-	storeId: string;
+  storeId: string;
 }
 
 interface PostBookmarkResponse extends BaseApiResponse {
-	bookmark: IBookmark;
+  bookmark: IBookmark;
 }
 
-export type { IBookmarkListItem, BookmarkListApiResponse, IBookmark, PostBookmarkApiParams, PostBookmarkResponse };
+export type {
+  IBookmarkListItem,
+  BookmarkListApiResponse,
+  IBookmark,
+  PostBookmarkApiParams,
+  PostBookmarkResponse,
+};

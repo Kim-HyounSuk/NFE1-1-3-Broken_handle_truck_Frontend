@@ -40,9 +40,13 @@ export default function LoginPage() {
 
     return (
         <div className="bg-black h-full flex flex-col justify-center items-center py-11">
-            <div className="flex justify-center flex-col items-center flex-1 mx-auto w-[calc(100%-100px)] sm:w-[calc(100%-320px)]">
-                <p className="text-3xl font-point text-white py-11 tracking-tighter">로그인</p>
-                <form className="max-w-screen-sm w-full flex flex-col gap-16 sm:gap-24 py-11">
+            <div className="flex justify-center flex-col items-center mx-auto w-[calc(100%-100px)] sm:w-[calc(100%-320px)]">
+                <p className="text-3xl font-point text-white py-11 tracking-tighter mt-4">로그인</p>
+                {/* form 태그에 onSubmit 추가 */}
+                <form
+                    className="max-w-screen-sm w-full flex flex-col gap-16 sm:gap-24 pt-11"
+                    onSubmit={handleSubmit(onSubmit)} // enter 키로 제출 가능
+                >
                     <div className="flex flex-col gap-8">
                         <Controller
                             name="email"
@@ -94,7 +98,6 @@ export default function LoginPage() {
                                         type="password"
                                         placeholder="**********"
                                     />
-
                                     {invalid && (
                                         <p className="absolute top-full left-0 text-primary text-xs py-1">
                                             {formState.errors.password?.message}
@@ -104,15 +107,17 @@ export default function LoginPage() {
                             )}
                         />
                     </div>
+
+                    {/* '로그인' 버튼의 타입을 'submit'로 설정 */}
+                    <button
+                        type="submit" // 이 부분을 submit 버튼으로 설정해야 Enter 키로 제출이 가능
+                        className="bg-primary py-5 text-white rounded-lg font-bold w-full tracking-tighter"
+                    >
+                        로그인
+                    </button>
                 </form>
             </div>
-            <div className="flex flex-col justify-center gap-2 items-center mx-auto w-[calc(100%-100px)] sm:w-[calc(100%-320px)] pb-11">
-                <button
-                    className="bg-primary py-5 text-white rounded-lg font-bold w-full tracking-tighter"
-                    onClick={handleSubmit(onSubmit)}
-                >
-                    로그인
-                </button>
+            <div className="flex flex-col justify-center gap-2 pt-2 items-center mx-auto w-[calc(100%-100px)] sm:w-[calc(100%-320px)] pb-11">
                 <p className="text-white text-xs py-2 line-text">또는</p>
                 <button
                     type="button"

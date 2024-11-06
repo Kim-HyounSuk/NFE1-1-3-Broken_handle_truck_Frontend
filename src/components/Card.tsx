@@ -1,10 +1,7 @@
-import { useState, useEffect } from "react";
 import BookMarkButton from "./BookMarkButton";
 import useFadeNavigate from "../hooks/useFadeNavigate.ts";
 import { categoryImages } from "../assets/images/category";
 import { categories } from "../constants/categories.ts";
-import { postBookmark, getBookmark } from "../apis/bookmark.ts";
-import { toast } from "react-toastify";
 
 interface CardProps {
   info: {
@@ -16,76 +13,15 @@ interface CardProps {
     isOpen: boolean;
   };
   bg: string;
-
-  onBookmarkToggle?: (storeId: string, isBookmarked: boolean) => void; // 토글 시 부모에게 알림
 }
 
-interface BookmarkItem {
-  id?: string;
-  comments: number;
-  name: string;
-  isOpen: boolean;
-  category: string;
-  storeId: string;
-}
-
-export default function Card({
-  info,
-  bg = "black",
-  onBookmarkToggle,
-}: CardProps) {
+export default function Card({ info, bg = "black" }: CardProps) {
   const visitOrComments = info.visited ?? info.comments ?? 0; // 방문자 수
   const navigate = useFadeNavigate();
   const ImgComponent =
     // 이후 categoryImages[info.category].component 로 수정 필요
     categoryImages[categories.includes(info.category) ? info.category : "기타"]
       .component;
-
-  const [bookmark, setBookmark] = useState<BookmarkItem[]>([]);
-  const [isBookmarked, setIsBookMarked] = useState<boolean>(false);
-
-  // get 모든 북마크 데이터 저장
-  useEffect(() => {
-    const getBookmarkData = async () => {
-      const res = await getBookmark();
-
-      setBookmark(res.bookmarks as BookmarkItem[]);
-    };
-
-    getBookmarkData();
-  }, []);
-
-  // 북마크 여부에 따라 별 반응 (색 채우고, 안 채우고)
-  useEffect(() => {
-    const checkIfBookmarked = () => {
-      if (bookmark) {
-        const matched = bookmark.some(
-          (place) => place.storeId === info.storeId,
-        );
-
-        setIsBookMarked(matched);
-      }
-    };
-
-    checkIfBookmarked();
-  }, [bookmark, info]);
-
-  // 북마크 post 함수 (등록/삭제)
-  const handleBookmarkToggle = async (storeId: string) => {
-    await postBookmark({ storeId });
-    const updatedBookmarks = await getBookmark(); // 북마크 상태 최신화
-    setBookmark(updatedBookmarks.bookmarks as BookmarkItem[]); // bookmark 상태 업데이트
-
-    setIsBookMarked((prev) => !prev); // 로컬 상태 업데이트
-    if (onBookmarkToggle) {
-      onBookmarkToggle(info.storeId, !isBookmarked); // onBookmarkToggle이 있을 때만 호출
-      toast.success("북마크에서 삭제되었습니다.");
-    } else if (isBookmarked) {
-      toast.success("북마크에 삭제되었습니다.");
-    } else {
-      toast.success("북마크에 추가되었습니다.");
-    }
-  };
 
   return (
     <div
@@ -114,8 +50,8 @@ export default function Card({
         <div className="flex-1 flex flex-col gap-y-2 pt-2">
           <div className="flex justify-end">
             <BookMarkButton
-              isBookmarked={isBookmarked}
-              onClick={() => handleBookmarkToggle(info.storeId)}
+              storeId={info.storeId}
+              // onClick={() => handleBookmarkToggle(info.storeId)}
               size={30}
             />
           </div>

@@ -17,10 +17,7 @@ import type { IStore } from "../types/store";
 
 type Coordinates = [longitude: number, latitude: number];
 
-export interface Marker extends IStore {
-  commentCount: number;
-  isContinue?: boolean;
-}
+type Marker = IStore & { commentCount: number };
 
 export default function MapPage() {
   const { lat, lon, setLocation: setMapLocation } = useMapLocationStore();
@@ -37,7 +34,7 @@ export default function MapPage() {
 
   const { user } = useUserStore();
   const { setLocation } = useStoresStore();
-  const { data: storeList = [], refetch } = useFetchStores();
+  const { stores, refetch } = useFetchStores();
 
   const mapRef = useRef<kakao.maps.Map | null>(null);
 
@@ -81,6 +78,17 @@ export default function MapPage() {
     }
   };
 
+  const handleClickMapMaker = (data: Marker) => {
+    new Promise((resolve) => {
+      if (clickMarker) {
+        setClickMarker(null);
+      }
+      return resolve("");
+    }).finally(() => {
+      setClickMarker(data);
+    });
+  };
+
   // 처음 로드될 때 내 위치로 이동
   useEffect(() => {
     if (!lon || !lat) {
@@ -110,7 +118,7 @@ export default function MapPage() {
         onDragEnd={() => setIsMapMove(true)}
         onClick={() => setClickMarker(null)}
       >
-        {storeList.map((data) => (
+        {stores.map((data) => (
           <MapMarker
             key={`${data.name}-${data._id}`}
             // 나중에 임시데이터 지우면 data.category로 변경
@@ -119,9 +127,7 @@ export default function MapPage() {
             }
             coordinates={data.coordinates}
             title={data.name}
-            onClick={() => {
-              setClickMarker(data as Marker);
-            }}
+            onClick={() => handleClickMapMaker(data)}
           />
         ))}
 
