@@ -13,7 +13,7 @@ interface CommentProps {
 	name: string;
 	content: string;
 	createdAt: string;
-	storeId: string;
+	storeId?: string;
 }
 
 export default function Comment({ id, authorId, refetch, name, createdAt, content, storeId }: CommentProps) {
