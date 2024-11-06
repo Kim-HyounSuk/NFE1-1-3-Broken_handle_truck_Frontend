@@ -40,8 +40,8 @@ export default function LoginPage() {
 
     return (
         <div className="bg-black h-full flex flex-col justify-center items-center py-11">
-            <div className="flex justify-center flex-col items-center mx-auto w-[calc(100%-100px)] sm:w-[calc(100%-320px)]">
-                <p className="text-3xl font-point text-white py-11 tracking-tighter mt-4">로그인</p>
+            <div className="flex justify-center flex-col items-center mx-auto w-[calc(100%-55px)] sm:w-[calc(100%-350px)]">
+                <p className="text-3xl font-point text-white py-11 tracking-tight mt-4">로그인</p>
                 {/* form 태그에 onSubmit 추가 */}
                 <form
                     className="max-w-screen-sm w-full flex flex-col gap-16 sm:gap-24 pt-11"
@@ -117,7 +117,7 @@ export default function LoginPage() {
                     </button>
                 </form>
             </div>
-            <div className="flex flex-col justify-center gap-2 pt-2 items-center mx-auto w-[calc(100%-100px)] sm:w-[calc(100%-320px)] pb-11">
+            <div className="flex flex-col justify-center gap-2 pt-2 items-center mx-auto w-[calc(100%-55px)] sm:w-[calc(100%-350px)] pb-11">
                 <p className="text-white text-xs py-2 line-text">또는</p>
                 <button
                     type="button"

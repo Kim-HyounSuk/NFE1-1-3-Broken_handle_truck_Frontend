@@ -84,10 +84,10 @@ export default function SignUpPage() {
     };
 
     return (
-        <div className="bg-black h-full flex flex-col justify-center items-center gap-10 relative">
-            <p className="text-3xl font-point text-white pt-12 sm:py-8 tracking-tighter">회원가입</p>
+        <div className="bg-black h-full flex flex-col justify-center items-center gap-10 relative py-16">
+            <p className="text-3xl font-point text-white pt-12 sm:py-8 tracking-tight">회원가입</p>
             <form
-                className="mx-auto w-[calc(100%-100px)] sm:w-[calc(100%-320px)] flex flex-col items-center mb-24"
+                className="mx-auto w-[calc(100%-55px)] sm:w-[calc(100%-350px)] flex flex-col items-center mb-24"
                 onSubmit={handleSubmit(onSubmit)}
             >
                 <div className="max-w-screen-sm w-full flex flex-col gap-8 pt-4 sm:py-8">
@@ -227,7 +227,7 @@ export default function SignUpPage() {
                     />
                 </div>
                 <button
-                    className="bg-primary max-w-screen-md tracking-tighter w-full pt-6 pb-8 sm:pb-12 text-white font-bold fixed bottom-0 disabled:bg-disabled disabled:text-white/50 disabled:cursor-default"
+                    className="bg-primary max-w-screen-md tracking-tight font-bold w-full pt-6 pb-8 sm:pb-12 text-white fixed bottom-0 disabled:bg-disabled disabled:text-white/60 disabled:cursor-default"
                     disabled={!isEmailChecked || !isValid}
                 >
                     회원가입

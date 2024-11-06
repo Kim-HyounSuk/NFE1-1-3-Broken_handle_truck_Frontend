@@ -14,7 +14,7 @@ export default function RootLayout() {
     //store에 있는 상태를 가져온다
     const title = useTitleStore((state) => state.title);
     return (
-        <div className="antialiased min-h-screen bg-black/30 flex justify-center">
+        <div className="antialiased min-h-screen bg-black/10 flex justify-center">
             <div className="relative max-w-[768px] w-full min-h-screen bg-white flex flex-col justify-center">
                 {/* 자식 라우트가 렌더링될 위치 */}
                 {['/my-truck', '/detail', '/bookmark', '/register', '/notification', '/my-page'].includes(pathname) && (

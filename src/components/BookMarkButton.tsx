@@ -33,6 +33,9 @@ export default function BookMarkButton({
     if (_storeId) {
       postBookmark({ storeId: _storeId })
         .then((data) => {
+          if (data.msg !== "ok") {
+            throw new Error();
+          }
           setIsBookmarked((prev) => !prev); // 로컬 상태 업데이트
           refetch(); // 리스트 호출
           return data.bookmark;
@@ -43,6 +46,10 @@ export default function BookMarkButton({
           } else {
             toast.success("북마크에 삭제되었습니다.");
           }
+        })
+        .catch(() => {
+          // 서버에서 보내주는 메시지가 사용자가 몰라도 되는 정보라 별도로 메시지 작성
+          toast.error("북마크 처리에 실패했습니다.");
         });
     }
   };
