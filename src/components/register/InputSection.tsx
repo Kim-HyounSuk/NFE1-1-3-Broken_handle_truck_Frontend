@@ -23,7 +23,7 @@ export default function InputSection({
 }: InputSectionProps) {
     return (
         <div className="flex flex-col gap-y-5 my-10">
-            <div className="mx-auto w-[calc(100%-80px)] sm:w-[calc(100%-250px)] flex flex-col gap-y-5 ">
+            <div className="mx-auto w-[calc(100%-50px)] sm:w-[calc(100%-250px)] flex flex-col gap-y-5 ">
                 <Input
                     id="location"
                     label="가게 위치"

@@ -17,16 +17,16 @@ export default function BookMarkButton({
 }: BookMarkButtonProps) {
   const { id } = useParams<{ id: string }>();
   const _storeId = storeId || id || "";
-  const { bookmarks, refetch } = useFetchBookmark();
+  const { bookmarks, isLoading, refetch } = useFetchBookmark();
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   useEffect(() => {
-    if (_storeId) {
+    if (!isLoading && _storeId) {
       setIsBookmarked(
         !!bookmarks.find((bookmark) => bookmark.storeId === _storeId),
       );
     }
-  }, []);
+  }, [isLoading]);
 
   // 북마크 post 함수 (등록/삭제)
   const handleBookmarkButtonClick = () => {

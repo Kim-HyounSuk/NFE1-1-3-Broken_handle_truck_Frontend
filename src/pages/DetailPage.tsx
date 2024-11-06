@@ -101,7 +101,7 @@ export default function DetailPage() {
                 </div>
                 <div>
                     <div className="flex flex-col gap-y-5 mx-auto mt-10">
-                        <div className="w-[calc(100%-80px)] sm:w-[calc(100%-250px)] mx-auto">
+                        <div className="w-[calc(100%-50px)] sm:w-[calc(100%-250px)] mx-auto">
                             <label className="text-xs text-white/50 mix-blend-difference tracking-tight">
                                 가게 위치
                             </label>
@@ -109,7 +109,7 @@ export default function DetailPage() {
                                 {address || `가게 위치`}
                             </div>
                         </div>
-                        <div className="w-[calc(100%-80px)] sm:w-[calc(100%-250px)] mx-auto">
+                        <div className="w-[calc(100%-50px)] sm:w-[calc(100%-250px)] mx-auto">
                             <label className="text-xs text-white/50 mix-blend-difference tracking-tight">
                                 카테고리
                             </label>
@@ -120,7 +120,7 @@ export default function DetailPage() {
                         <Button defaultValue={storeInfo.paymentMethod} disabled />
                     </div>
                 </div>
-                <div className="flex justify-start items-center gap-x-1 text-base mx-auto mb-3 pt-11 w-[calc(100%-80px)] sm:w-[calc(100%-250px)]">
+                <div className="flex justify-start items-center gap-x-1 text-base mx-auto mb-3 pt-11 w-[calc(100%-50px)] sm:w-[calc(100%-250px)]">
                     <MessageSquare width={16} height={16} />
                     <span className="tracking-tight">
                         리뷰
@@ -128,11 +128,11 @@ export default function DetailPage() {
                     </span>
                 </div>
                 {data.comments.length === 0 ? (
-                    <div className="w-[calc(100%-80px)] sm:w-[calc(100%-250px)] mx-auto flex-1 mb-5">
+                    <div className="w-[calc(100%-50px)] sm:w-[calc(100%-250px)] mx-auto flex-1 mb-5">
                         <NoReview />
                     </div>
                 ) : (
-                    <div className="w-[calc(100%-80px)] sm:w-[calc(100%-250px)] mx-auto flex-1 mb-5">
+                    <div className="w-[calc(100%-50px)] sm:w-[calc(100%-250px)] mx-auto flex-1 mb-5">
                         {data.comments.map((comment: IComment) => (
                             <Comment
                                 key={`comment_${comment._id}`}
