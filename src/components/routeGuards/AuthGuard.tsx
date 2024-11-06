@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import useUserStore from '../../store/userStore';
-import useFadeNavigate from '../../hooks/useFadeNavigate';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import useNotificationStore from '../../store/notificationStore';
 import { getAuthValidation } from '../../apis/auth';
 
 export default function AuthGaurd(): React.ReactElement {
 	const { setUser, user } = useUserStore();
-	const navigate = useFadeNavigate();
+	const navigate = useNavigate();
 	const { initializeSocket, closeSocket, manualClose, setManualClose } = useNotificationStore();
 
 	const validateAuth = async () => {

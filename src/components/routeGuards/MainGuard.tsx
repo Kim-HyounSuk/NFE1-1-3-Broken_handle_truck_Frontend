@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import useUserStore from '../../store/userStore';
-import useFadeNavigate from '../../hooks/useFadeNavigate';
 import MainPage from '../../pages/MainPage';
 import { getAuthValidation } from '../../apis/auth';
+import { useNavigate } from 'react-router-dom';
 
 export default function MainGuard(): React.ReactElement {
 	const { setUser, user } = useUserStore();
-	const navigate = useFadeNavigate();
+	const navigate = useNavigate();
 
 	const validateAuth = async () => {
 		const data = await getAuthValidation();

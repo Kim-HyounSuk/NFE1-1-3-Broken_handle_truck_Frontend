@@ -1,12 +1,11 @@
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import useUserStore from '../../store/userStore';
-import useFadeNavigate from '../../hooks/useFadeNavigate';
 import { useEffect } from 'react';
 import { getAuthValidation } from '../../apis/auth';
 
 export default function PublicGuard(): React.ReactElement {
 	const { user, setUser } = useUserStore();
-	const navigate = useFadeNavigate();
+	const navigate = useNavigate();
 	const location = useLocation();
 
 	const validateAuth = async () => {
