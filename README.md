@@ -41,7 +41,7 @@
 
 ## 프로젝트 구조
 
-![다이어그램](https://github.com/user-attachments/assets/5b21157e-3bcb-40d6-921a-82390efd1b61)
+![스크린샷 2024-11-07 오전 11 30 14](https://github.com/user-attachments/assets/1eb747fd-4780-4956-ba19-7c7cb9292100)
 
 <br />
 
@@ -53,7 +53,9 @@
 
 ## 주요 기능
 
-- 회원가입 및 로그인
+- **회원가입 및 로그인(카카오 로그인)**
+
+  <img src="https://github.com/user-attachments/assets/451baff6-e299-4a10-b436-bf1190a25b4f" width="500">
 
 - 지도에서 가게 정보 확인(카드, 상세페이지)
 

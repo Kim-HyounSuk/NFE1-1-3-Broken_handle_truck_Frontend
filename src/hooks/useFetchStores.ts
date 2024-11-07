@@ -10,6 +10,7 @@ export default function useFetchStores() {
     queryFn: () => getStoreList({ category, name, lat, lon }),
     select: (data: StoreListApiResponse) => data.stores,
     refetchInterval: 1000 * 60, // 1분?
+    staleTime: 1000 * 60 * 3,
   });
 
   return { stores: data || [], isLoading, refetch };

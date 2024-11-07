@@ -1,13 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useStoresStore from "../store/storesStore.ts";
 
 export const useSearch = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const { setSearchTerm: setKeyword } = useStoresStore();
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // console.log(e.target.value); // input change 값 확인용
     setSearchTerm(e.target.value);
+
+    // input 값에 변경이 있을 때 빈 값이라면 setKeyword('')로 설정
+    if (!e.target.value) {
+      setKeyword("");
+    }
   };
+
+  // 렌더링 시 setKeyword('')으로 설정
+  useEffect(() => {
+    setKeyword("");
+  }, []);
 
   const clickHandler = () => {
     setSearchTerm("");
