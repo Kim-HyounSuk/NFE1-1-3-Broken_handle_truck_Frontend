@@ -214,7 +214,7 @@ export default function SignUpPage() {
                                     placeholder="**********"
                                 >
                                     {isDirty && !invalid && (
-                                        <CheckIcon width={24} height={24} className="stroke-primary" />
+                                        <CheckIcon width={18} height={18} className="stroke-primary" />
                                     )}
                                 </Input>
                                 {invalid && (
